@@ -1,0 +1,32 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block subtitulo %}
+
+¡Registrate aquí!
+
+{% endblock %}
+
+
+{% block searchbar %}
+                    
+<form action="" method="POST"> {% csrf_token %}
+    {{formulario.as_p}}
+    <button type"">
+        Registrarse
+    </button>
+</form>
+<!-- Divider-->
+<hr class="my-4" /> 
+
+<p>Estamos buscando el Post con el titulo: {{titulo}}</p>
+
+{% for post in post %}
+
+    <p>Titulo: {{post.titulo}} ---- Subtitulo: {{post.subtitulo}}</p>
+
+    
+{% endfor %}
+
+{% endblock %}

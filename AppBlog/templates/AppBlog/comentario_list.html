@@ -1,0 +1,47 @@
+{% extends "AppBlog/padre.html" %}
+{% load static %}
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+WealthWizards
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+¡Todos nuestros Comentarios!
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1>¡Aquí tienes el listado de todos nuestros Comentarios!</h1>
+<!-- Divider-->
+<hr class="my-4" />
+{% for comentario in object_list %}
+
+<div class="post-preview">
+    <a href="{% url 'ComentarioDetalle' comentario.id %}">
+        <h2 class="post-title"><p>{{comentario.nombre}}</p></h2>
+        <h3 class="post-subtitle"><p>{{comentario.texo}}</p></h3>
+    </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+
+<button>
+    <a href="{% url 'ComentarioDetalle' comentario.id %}"> Ver Comentario </a>
+</button>
+
+<button>
+    <a href="{% url 'ComentarioEditar' comentario.id %}"> Editar Comentario </a>
+</button>
+
+<button>
+    <a href="{% url 'ComentarioEliminar' comentario.id %}"> Eliminar Comentario </a>
+</button>
+
+{% endfor %}
+
+{% endblock %}

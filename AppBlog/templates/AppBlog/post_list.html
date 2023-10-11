@@ -1,0 +1,47 @@
+{% extends "AppBlog/padre.html" %}
+{% load static %}
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+WealthWizards
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+¡Todos nuestros Articulos!
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1>¡Aquí tienes el listado de todos nuestros Articulos!</h1>
+<!-- Divider-->
+<hr class="my-4" />
+{% for post in object_list %}
+
+<div class="post-preview">
+    <a href="{% url 'PostDetalle' post.id %}">
+        <h2 class="post-title"><p>{{post.titulo}}</p></h2>
+        <h3 class="post-subtitle"><p>{{post.subtitulo}}</p></h3>
+    </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+
+<button>
+    <a href="{% url 'PostDetalle' post.id %}"> Ver Post </a>
+</button>
+
+<button>
+    <a href="{% url 'PostEditar' post.id %}"> Editar Post </a>
+</button>
+
+<button>
+    <a href="{% url 'PostEliminar' post.id %}"> Eliminar Post </a>
+</button>
+
+{% endfor %}
+
+{% endblock %}

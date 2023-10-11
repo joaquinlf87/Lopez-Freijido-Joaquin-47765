@@ -1,0 +1,46 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+Bienvenido a
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+Un Blog para crear y leer articulos de inversiones y finanzas
+{{mensaje}}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+
+¿Quieres crear un nuevo Articulo? Haz click en el botón
+<br>
+<br>
+    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <button class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'PostCrear' %}">Crear Articulo</a></button>
+    </ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
+
+
+
+

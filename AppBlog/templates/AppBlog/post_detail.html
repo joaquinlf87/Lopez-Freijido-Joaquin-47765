@@ -1,0 +1,50 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+
+    <h2 class="post-title"><p>{{post.titulo}}</p></h2>
+    <h3 class="post-subtitle"><p>{{post.subtitulo}}</p></h3>
+    <p>{{post.texto}}</p>
+
+        <!-- Boton de Regresar-->
+        <button>
+            <a href="{% url 'PostLeer' %}"> Regresar </a>
+        </button>
+
+        <!-- Comentarios-->
+        <h2 class="post-title"><p>Comentarios...</p></h2>
+        
+        <!-- Boton para agregar comentarios--> 
+        <button>
+            <a href="{% url 'ComentarioCrear' %}"> Agregar Comentarios </a>
+        </button>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

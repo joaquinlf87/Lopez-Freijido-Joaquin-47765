@@ -1,0 +1,45 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+¡Crear un Articulo para compartir con la comunidad!
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1>Crea un nuevo articulo</h1>
+<br>
+<br>
+<form action="" method="POST"> {% csrf_token %}
+        
+    {{form.as_p}}
+
+    <input type="submit" value="Enviar">
+
+    
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
