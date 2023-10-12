@@ -17,12 +17,6 @@ Los usuarios pueden realizar las siguientes accciones:
 - Cerrar Sesión
 - Login en caso de haber cerrado sesión
 
-# DESCRIPCION DE LOS MODELOS:
-- Post: es el modelo de los Articulos
-- Recurso: es el modelo de los recursos
-- Contacto: es el modelo de contacto
-- Avatar: es el modelo de avatars para los perfiles
-
 # DATOS DE USUARIO ADMINISTRADOR
 - Superuser: joaquin
 - Password: Coder123
