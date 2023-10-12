@@ -2,6 +2,13 @@
 
 {% load static %}
 
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
 {% block subtitulo %}
 
 Aquí se edita al usuario
@@ -10,7 +17,8 @@ Aquí se edita al usuario
 
 
 {% block searchbar %}
-
+<h1>Edita tus datos</h1>
+<br>
 <form action="" method="POST"> {% csrf_token %}
     {{formulario.as_p}}
     <button type"">

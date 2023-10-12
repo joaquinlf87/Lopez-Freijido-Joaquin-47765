@@ -1,0 +1,42 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+
+    <h2 class="post-title"><p>{{contacto.nombre}}</p></h2>
+    <h3 class="post-subtitle"><p>{{contacto.email}}</p></h3>
+    <p>{{contacto.mensaje}}</p>
+
+        <!-- Boton de Regresar-->
+        <button>
+            <a href="{% url 'ContactoLeer' %}"> Regresar </a>
+        </button>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+
+    <h2 class="post-title"><p>Recurso: {{recurso.titulo}}</p></h2>
+    <p>Link al recurso: <a href="{{ recurso.link }}" target="_blank">{{ recurso.link }}</a></p>
+    <img src="{{recurso.imagen.url}}" alt="No hay imagen.">
+    <p>Descripción: {{recurso.texto}}</p>
+
+        <!-- Boton de Regresar-->
+        <button>
+            <a href="{% url 'RecursoLeer' %}"> Regresar </a>
+        </button>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

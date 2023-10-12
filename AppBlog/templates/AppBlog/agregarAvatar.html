@@ -1,0 +1,32 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+{% block subtitulo %}
+
+Aquí puedes agregar un avatar
+
+{% endblock %}
+
+
+{% block main %}
+                    
+<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    {{formulario.as_p}}
+    <button type"">
+        Enviar Imagen
+    </button>
+</form>
+<!-- Divider-->
+<hr class="my-4" /> 
+
+<p>Estamos buscando el Post con el titulo: {{titulo}}</p>
+
+{% for post in post %}
+
+    <p>Titulo: {{post.titulo}} ---- Subtitulo: {{post.subtitulo}}</p>
+
+    
+{% endfor %}
+
+{% endblock %}

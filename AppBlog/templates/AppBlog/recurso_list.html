@@ -1,0 +1,58 @@
+{% extends "AppBlog/padre.html" %}
+{% load static %}
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+WealthWizards
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+¡Aquí tienes todos nuestros Recursos!
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1>¡Mira todos nuestros Recursos!</h1>
+<!-- Divider-->
+<hr class="my-4" />
+{% for recurso in object_list %}
+
+<div class="post-preview">
+    <a href="{% url 'RecursoDetalle' recurso.id %}">
+    <h2 class="post-title"><p>{{recurso.titulo}}</p></h2>
+
+    </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+
+<button>
+    <a href="{% url 'RecursoDetalle' recurso.id %}"> Ver Recurso </a>
+</button>
+
+<button>
+    <a href="{% url 'RecursoEditar' recurso.id %}"> Editar Recurso </a>
+</button>
+
+<button>
+    <a href="{% url 'RecursoEliminar' recurso.id %}"> Eliminar Recurso </a>
+</button>
+
+{% endfor %}
+
+<br>
+<br>
+    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <button class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'RecursoCrear' %}">Crear Recurso</a></button>
+    </ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

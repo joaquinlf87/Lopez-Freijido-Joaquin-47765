@@ -1,23 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% extends "AppBlog/padre.html" %}
+{% load static %}
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+{% endblock %}
 
-</head>
-<body>
+<!-- Block Titulo-->
+{% block titulo %}
+WealthWizards
+{% endblock %}
 
-    <p>Estamos buscando el Post con el titulo: {{titulo}}</p>
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+¡Todos nuestros Articulos!
+{% endblock %}
 
-    {% for post in post %}
+<!-- Block Main-->
+{% block main %}
+<h1>¡Aquí tienes el resultado de tu búsqueda!</h1>
+<!-- Divider-->
+<hr class="my-4" />
+{% for post in post %}
 
-        <p>Titulo: {{post.titulo}} ---- Subtitulo: {{post.subtitulo}}</p>
+<div class="post-preview">
+    <a href="{% url 'PostDetalle' post.id %}">
+        <h2 class="post-title"><p>{{post.titulo}}</p></h2>
+        <p>{{post.subtitulo}}</p></h3>
+    </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
 
+<button>
+    <a href="{% url 'PostDetalle' post.id %}"> Ver Post </a>
+</button>
 
-    {% endfor %}
+<button>
+    <a href="{% url 'PostEditar' post.id %}"> Editar Post </a>
+</button>
 
-   
-</body>
-</html>
+<button>
+    <a href="{% url 'PostEliminar' post.id %}"> Eliminar Post </a>
+</button>
+
+{% endfor %}
+
+{% endblock %}

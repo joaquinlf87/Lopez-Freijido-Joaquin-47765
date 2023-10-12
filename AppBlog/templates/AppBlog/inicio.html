@@ -19,7 +19,7 @@ WealthWizards
 <!-- Block Subtitulo-->
 {% block subtitulo %}
 
-Un Blog para crear y leer articulos de inversiones y finanzas
+Un Blog con Articulos y Recursos de inversiones y finanzas
 {{mensaje}}
 
 {% endblock %}
@@ -31,10 +31,20 @@ Un Blog para crear y leer articulos de inversiones y finanzas
 <br>
 <br>
     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-        <button class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'PostCrear' %}">Crear Articulo</a></button>
+        <button class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'PostCrear' %}">Crear un Articulo</a></button>
     </ul>
 <br>
 <br>
+    <!-- Divider-->
+    <hr class="my-4" />
+    ¿Quieres Buscar un nuevo Articulo? Haz click en el botón
+    <br>
+    <br>
+    <form action="/AppBlog/resultadosTitulo/" method="GET"> {% csrf_token %}
+        <input type="text" name="titulo" id="titulo" style="width: 300px;">
+        <input type="submit" value="Buscar un Articulo">
+    </form>
+
 <br>
 <br>
 <br>

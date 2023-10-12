@@ -2,6 +2,13 @@
 
 {% load static %}
 
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
 {% block subtitulo %}
 
 ¡Registrate aquí!
@@ -17,16 +24,7 @@
         Registrarse
     </button>
 </form>
-<!-- Divider-->
-<hr class="my-4" /> 
 
-<p>Estamos buscando el Post con el titulo: {{titulo}}</p>
 
-{% for post in post %}
-
-    <p>Titulo: {{post.titulo}} ---- Subtitulo: {{post.subtitulo}}</p>
-
-    
-{% endfor %}
 
 {% endblock %}

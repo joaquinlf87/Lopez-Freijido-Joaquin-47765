@@ -19,16 +19,15 @@ WealthWizards
 <!-- Block Subtitulo-->
 {% block subtitulo %}
 
-¡Crear un Articulo para compartir con la comunidad!
 
 {% endblock %}
 
 <!-- Block Main-->
 {% block main %}
-<h1>Crea un nuevo articulo</h1>
+<h1>Estás editando un Articulo</h1>
 <br>
 <br>
-<form action="" method="POST"> {% csrf_token %}
+<form action="" enctype="multipart/form-data" method="POST"> {% csrf_token %}
         
     {{form.as_p}}
 

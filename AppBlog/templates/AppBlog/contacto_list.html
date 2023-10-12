@@ -1,0 +1,47 @@
+{% extends "AppBlog/padre.html" %}
+{% load static %}
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+WealthWizards
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1></h1>
+<!-- Divider-->
+<hr class="my-4" />
+{% for contacto in object_list %}
+
+<div class="post-preview">
+    <a href="{% url 'ContactoDetalle' contacto.id %}">
+        <h2 class="post-title"><p>{{contacto.nombre}}</p></h2>
+        <h3 class="post-subtitle"><p>{{contacto.email}}</p></h3>
+    </a>
+</div>
+<!-- Divider-->
+<hr class="my-4" />
+
+<button>
+    <a href="{% url 'ContactoDetalle' contacto.id %}"> Ver Contacto</a>
+</button>
+
+<button>
+    <a href="{% url 'ContactoEditar' contacto.id %}"> Editar</a>
+</button>
+
+<button>
+    <a href="{% url 'ContactoEliminar' contacto.id %}"> Eliminar</a>
+</button>
+
+{% endfor %}
+
+{% endblock %}

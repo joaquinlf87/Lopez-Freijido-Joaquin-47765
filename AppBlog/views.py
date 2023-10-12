@@ -25,8 +25,8 @@ def inicioSesion(request):
             if user:
                 login(request, user)
                 return render(request, "AppBlog/inicio.html", {"mensaje": f"Bienvenido {user}"})
-        else:
-            return render(request, "AppBlog/inicio.html", {"mensaje":"Los datos de registro son incorrectos"})
+            else:
+                return render(request, "AppBlog/inicio.html", {"mensaje": f"Los datos de registro son incorrectos"})
     else:
         form = AuthenticationForm()
     return render(request, "AppBlog/login.html", {"formulario":form})
@@ -47,6 +47,7 @@ def registro(request):
 
 
 #Vista de Edicion del usuario
+@login_required
 def editarUsuario(request):
     usuario = request.user #para saber qué usuario está logueadp
     if request.method == "POST":
@@ -68,108 +69,30 @@ def editarUsuario(request):
         })
     return render(request, "AppBlog/editarPerfil.html", {"formulario":form, "usuario":usuario})
 
-
-
-#Vistas de los links
-def inicio(request):
-    return render(request, "AppBlog/inicio.html")
-
-def about(request):
-    return render(request, "AppBlog/about.html")
-
-def recursos(request):
-    return render(request, "AppBlog/recursos.html")
-
-def contacto(request):
-    return render(request, "AppBlog/contacto.html")
-
-
-#Vistas de los modelos
-def autor(request):
-    autor1 = Autor(
-        nombre="Juan", 
-        bio="Juan es un especialista en renta fija"
-        )
-    autor1.save()
-
-    return render(request, "AppBlog/autor.html")
-
-def categoria(request):
-    categoria1 = Categoria(
-        nombre="Renta Fija",
-    )
-    categoria1.save()
-
-    return render(request, "AppBlog/categoria.html")
-
-# Acá me falta definir algunos argumentos (categoría, fecha)
-def post(request):
-    post1 = Post(
-        titulo="Invirtiendo en renta fija",
-        subtitulo="Las mejores estrategias de inversion",
-        texto="Acá estamos describiendo las mejores estrategias de inversion",
-        #autor=autor,
-            )
-    post1.save()
-
-    return render(request, "AppBlog/post.html")
-
-def comentario(request):
-    comentario1 = Comentario(
-        post=post,
-        nombre="Carlos",
-        email="carlos@gmail.com",
-        texto="Estoy dejando este comentario",
-    )
-
-    comentario1.save()
-
-    return render(request, "AppBlog/comentario.html")
-
-
-#Vistas de formularios
-
-
-def contactoFormulario(request):
+#Vista para agregar Avatar
+@login_required
+def agregarAvatar(request):
     if request.method=="POST":
-        formulario1 = ContactoFormulario
-        if formulario1.is_valid():
-            info = formulario1.cleaned_data #Así nos da el formulario limpio, sin data
-            contacto = Contacto(
-                        nombre=info["nombre"], 
-                        email=info["email"],
-                        mensaje=info["mensaje"],
-                        )
-            contacto.save
+        form = AvatarFormulario(request.POST, request.FILES)
+        if form.is_valid():
+            usuarioActual = User.objects.get(username=request.user)
+            avatar = Avatar(usuario=usuarioActual, imagen=form.cleaned_data["imagen"])
+            avatar.save()
+
             return render(request, "AppBlog/inicio.html")
     else:
-        formulario1 = ContactoFormulario()
-    return render(request, "AppBlog/contactoFormulario.html")
-
-
-#Vistas de formularios de búsqueda
-def busquedaTitulo(request):
-
-    return render(request, "AppBlog/inicio.html")
-
+        form = AvatarFormulario()
+    return render(request, "AppBlog/agregarAvatar.html", {"formulario":form})
 
 #Vistas de formularios de resultados de búsqueda
 def resultadosTitulo(request):
-
     if request.GET["titulo"]:
-        
         titulo = request.GET["titulo"]
         post = Post.objects.filter(titulo__icontains=titulo)
-        
-        return render(request, "AppBlog/inicio.html", {"post":post, "titulo":titulo})
-    
+        return render(request, "AppBlog/resultadosTitulo.html", {"post":post, "titulo":titulo})
     else:
-        
         respuesta = "No enviaste datos"
-        
     return HttpResponse(respuesta)
-         #Entre los corchetes pongo el ID o nombre que hayas puedo en el html correspondiente 
-
 
 
 #CRUD POST Con clases
@@ -182,38 +105,16 @@ class DetallePost(LoginRequiredMixin, DetailView):
 class CrearPost(LoginRequiredMixin, CreateView):
     model = Post
     success_url = "/AppBlog/"
-    fields = ["titulo", "subtitulo", "texto"]
+    fields = ["titulo", "subtitulo", "texto", "imagen"]
 
 class ActualizarPost(LoginRequiredMixin, UpdateView):
     model = Post
     success_url = "/AppBlog/post/posts"
-    fields = ["titulo", "subtitulo", "texto"]
+    fields = ["titulo", "subtitulo", "texto", "imagen"]
 
 class EliminarPost(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = "/AppBlog/post/posts"
-
-
-#CRUD COMENTARIO con Clases
-class ListaComentario(ListView):
-    model = Comentario
-
-class DetalleComentario(DetailView):
-    model = Comentario
-
-class CrearComentario(CreateView):
-    model = Comentario
-    success_url = "/AppBlog/comentario/list"
-    fields = ["nombre", "texto"]
-
-class ActualizarComentario(UpdateView):
-    model = Comentario
-    success_url = "/AppBlog/comentario/list"
-    fields = ["nombre", "texto"]
-
-class EliminarComentario(DeleteView):
-    model = Comentario
-    success_url = "/AppBlog/comentario/list"
 
 
 #CRUD RECURSO Con clases
@@ -225,14 +126,59 @@ class DetalleRecurso(LoginRequiredMixin, DetailView):
 
 class CrearRecurso(LoginRequiredMixin, CreateView):
     model = Recurso
-    success_url = "/AppBlog/"
-    fields = ["titulo", "link", "texto"]
+    success_url = "/AppBlog/recurso/list"
+    fields = ["titulo", "link", "texto", "imagen"]
 
 class ActualizarRecurso(LoginRequiredMixin, UpdateView):
     model = Recurso
     success_url = "/AppBlog/recurso/list"
-    fields = ["titulo", "link", "texto"]
+    fields = ["titulo", "link", "texto", "imagen"]
 
 class EliminarRecurso(LoginRequiredMixin, DeleteView):
     model = Recurso
     success_url = "/AppBlog/recurso/list"
+
+
+#Formulario de Contacto
+class ListaContacto(LoginRequiredMixin, ListView):
+    model = Contacto
+
+class DetalleContacto(LoginRequiredMixin, DetailView):
+    model = Contacto
+
+class CrearContacto(CreateView):
+    model = Contacto
+    success_url = "/AppBlog/"
+    fields = ["nombre", "email", "mensaje"]
+
+class ActualizarContacto(LoginRequiredMixin, UpdateView):
+    model = Contacto
+    success_url = "/AppBlog/comentario/list/"
+    fields = ["nombre", "email", "mensaje"]
+
+class EliminarContacto(LoginRequiredMixin, DeleteView):
+    model = Contacto
+    success_url = "/AppBlog/comentario/list/"
+
+
+@login_required
+def inicio(request):
+    return render(request, "AppBlog/inicio.html")
+
+def about(request):
+    return render(request, "AppBlog/about.html")
+
+@login_required
+def recursos(request):
+    return render(request, "AppBlog/recursos.html")
+
+
+
+
+
+
+
+
+
+
+

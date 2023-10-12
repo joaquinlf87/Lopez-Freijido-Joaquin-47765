@@ -1,0 +1,41 @@
+{% extends "AppBlog/padre.html" %}
+
+{% load static %}
+
+<!-- Block Pretitulo-->
+{% block pretitulo %}
+
+
+
+{% endblock %}
+
+<!-- Block Titulo-->
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+<!-- Block Subtitulo-->
+{% block subtitulo %}
+
+{% endblock %}
+
+<!-- Block Main-->
+{% block main %}
+<h1></h1>
+<br>
+<br>
+
+<form action="" method="POST"> {% csrf_token %}
+    <p>¿Estás seguro que quieres eliminar este Contacto?</p>
+    <input type="submit" value="Confirmar">
+</form>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

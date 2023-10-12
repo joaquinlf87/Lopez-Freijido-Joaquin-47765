@@ -2,31 +2,31 @@
 
 {% load static %}
 
-{% block subtitulo %}
+{% block pretitulo %}
 
-¡Bienvenido! Inicia Sesión
+Bienvenido a
+
+{% endblock %}
+
+{% block titulo %}
+
+WealthWizards
+
+{% endblock %}
+
+{% block subtitulo %}
 
 {% endblock %}
 
 
 {% block searchbar %}
-                    
+<h1>Inicia sesión</h1>                    
 <form action="" method="POST"> {% csrf_token %}
     {{formulario.as_p}}
-    <button type"">
+    <button type="submit">
         Iniciar Sesión
     </button>
 </form>
-<!-- Divider-->
-<hr class="my-4" /> 
 
-<p>Estamos buscando el Post con el titulo: {{titulo}}</p>
-
-{% for post in post %}
-
-    <p>Titulo: {{post.titulo}} ---- Subtitulo: {{post.subtitulo}}</p>
-
-    
-{% endfor %}
 
 {% endblock %}
